@@ -16,7 +16,7 @@ An **L15 Member** is an entity who confirmed knowledge of a private key correspo
 
 ##### Requirements
 
-1. First L15 Member, who receives block reward with the coinbase transaction of the block #0, becomes the L15 Majordomo immediately with no additional actions.
+1. First L15 Member, who receives block reward with the coinbase transaction of the block #0, becomes the L15 Majordomo immediately with no additional conditions.
 2. Every next participant to the L15 Majordomo must
    1. publish his ==(M)== FROST nonce commitments,
    2. publish his VSS commitment share,
@@ -27,7 +27,7 @@ An **L15 Member** is an entity who confirmed knowledge of a private key correspo
    * if the first L15 Majordomo member is *not* completed actions 2.1, 2.2, 2.3 then
      * the new L15 Majordomo public key is the public key of the arriving participant
      * the first member still has an option to complete actions 2.1, 2.2, 2.3 to rejoin the L15 Majordomo public key
-4. An member of the L15 Majordomo stops to play his role if
+4. An member of the L15 Majordomo stops to play his role for newly created contracts if
    - he is not anymore in the list of N largest L15SR hodlers who already participate the L15 Majordomo
    - he has less then M published and unused FROST nonce commitments
 
@@ -38,6 +38,18 @@ Funds of the L15 Majordomo members have to be spendable:
    - Condition 1 is optional for the L15 Majordomo contained by first and single public key from the coinbase transaction of the block #0
 
 2. By the aggregated key of all current L15 Majordomo members and the member's public key at any time
+
+##### Specification
+
+###### The L15 Majordomo Public Key
+
+1. The L15 Majordomo Public Key is determined dynamically in time: it means it may change for every new contract according to the requirements listed above. However, once a contract is created at L15 chain, the L15 Majordomo public key remains same for the exact contract during the contract's lifetime.
+2. The L15 Majordomo Public Key is secp256k1 EC public key aggregated according to FROST from The L15 Majordomo members' public keys which were actual at the L15 chain block where the contract was recorded.
+
+###### The L15 Majordomo Address
+
+1. The L15 Majordomo Address is Bech32m address according to Bitcoin TapRoot spec.
+2. The L15 Majordomo Address is the L15 Majordomo Public Key as an Internal Public Key tweaked by a root of taptree scripts. The taptree contains a single script: the L15 Majordomo hodl script
 
 ``` <TBD: The L15 Majordomo hodl script>```
 
